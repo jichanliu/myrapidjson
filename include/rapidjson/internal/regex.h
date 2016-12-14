@@ -436,7 +436,7 @@ private:
             Eval(operandStack, kZeroOrOne);         // a{3,5} -> a a a a?
             for (unsigned i = n; i < m - 1; i++)
                 CloneTopOperand(operandStack);      // a{3,5} -> a a a a? a?
-            for (unsigned i = n; i < m; i++)
+            for (unsigned i = n; i < m - 1; i++)
                 Eval(operandStack, kConcatenation); // a{3,5} -> a a aa?a?
         }
 
