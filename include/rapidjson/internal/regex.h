@@ -286,11 +286,14 @@ private:
                 case '\\': // Escape character
                     if (!CharacterEscape(ds, &codepoint))
                         return; // Unsupported escape character
-                    // fall through to default
+					PushOperand(operandStack, codepoint);
+                    ImplicitConcatenation(atomCountStack, operatorStack);
+					break;
 
                 default: // Pattern character
                     PushOperand(operandStack, codepoint);
                     ImplicitConcatenation(atomCountStack, operatorStack);
+					break;
             }
         }
 
