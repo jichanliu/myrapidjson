@@ -469,7 +469,7 @@ private:
         if (ds.Peek() < '0' || ds.Peek() > '9')
             return false;
         while (ds.Peek() >= '0' && ds.Peek() <= '9') {
-            if (r >= 429496729 && ds.Peek() > '5') // 2^32 - 1 = 4294967295
+            if (r >= 4294967295 && ds.Peek() > '5') // 2^32 - 1 = 4294967295
                 return false; // overflow
             r = r * 10 + (ds.Take() - '0');
         }
