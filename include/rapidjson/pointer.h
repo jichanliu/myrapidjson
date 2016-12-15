@@ -263,7 +263,7 @@ public:
     */
     GenericPointer Append(SizeType index, Allocator* allocator = 0) const {
         char buffer[21];
-        char* end = sizeof(SizeType) == 4 ? internal::u32toa(index, buffer) : internal::u64toa(index, buffer);
+        char* end = sizeof(SizeType) == 4 ? (internal::u32toa(index, buffer)) : (internal::u64toa(index, buffer));
         SizeType length = static_cast<SizeType>(end - buffer);
         buffer[length] = '\0';
 
@@ -564,7 +564,8 @@ public:
 
     //! Query a value in a document with default value.
     template <typename stackAllocator>
-    ValueType& GetWithDefault(GenericDocument<EncodingType, typename ValueType::AllocatorType, stackAllocator>& document, const ValueType& defaultValue) const {
+    ValueType& GetWithDefault(GenericDocument<EncodingType, typename ValueType::AllocatorType, stackAllocator>& document, const ValueType& defaultValue) const
+	{
         return GetWithDefault(document, defaultValue, document.GetAllocator());
     }
 
