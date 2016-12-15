@@ -648,12 +648,15 @@ public:
         }
 
         if (enum_) {
+			bool skip = false;
             const uint64_t h = context.factory.GetHashCode(context.hasher);
             for (SizeType i = 0; i < enumCount_; i++)
-                if (enum_[i] == h)
-                    goto foundEnum;
-            RAPIDJSON_INVALID_KEYWORD_RETURN(GetEnumString());
-            foundEnum:;
+                if (enum_[i] == h){
+					skip = true;
+					break;
+				}  
+			if(!skip)
+				RAPIDJSON_INVALID_KEYWORD_RETURN(GetEnumString());           
         }
 
         if (allOf_.schemas)
@@ -662,11 +665,14 @@ public:
                     RAPIDJSON_INVALID_KEYWORD_RETURN(GetAllOfString());
         
         if (anyOf_.schemas) {
+			bool skip = false;
             for (SizeType i = anyOf_.begin; i < anyOf_.begin + anyOf_.count; i++)
-                if (context.validators[i]->IsValid())
-                    goto foundAny;
-            RAPIDJSON_INVALID_KEYWORD_RETURN(GetAnyOfString());
-            foundAny:;
+                if (context.validators[i]->IsValid()){
+					skip = true;
+					break;
+				}
+			if(!skip)
+				RAPIDJSON_INVALID_KEYWORD_RETURN(GetAnyOfString());
         }
 
         if (oneOf_.schemas) {
