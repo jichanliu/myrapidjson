@@ -44,9 +44,9 @@ public:
     bool IsNormal() const { return (u_ & kExponentMask) != 0 || Significand() == 0; }
     bool IsZero() const { return (u_ & (kExponentMask | kSignificandMask)) == 0; }
 
-    uint64_t IntegerSignificand() const { return IsNormal() ? Significand() | kHiddenBit : Significand(); }
+    uint64_t IntegerSignificand() const { return IsNormal() ? (Significand() | kHiddenBit) : Significand(); }
     int IntegerExponent() const { return (IsNormal() ? Exponent() : kDenormalExponent) - kSignificandSize; }
-    uint64_t ToBias() const { return (u_ & kSignMask) ? ~u_ + 1 : u_ | kSignMask; }
+    uint64_t ToBias() const { return (u_ & kSignMask) ? (~u_ + 1) : (u_ | kSignMask); }
 
     static unsigned EffectiveSignificandSize(int order) {
         if (order >= -1021)
