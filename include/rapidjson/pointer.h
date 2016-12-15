@@ -263,7 +263,7 @@ public:
     */
     GenericPointer Append(SizeType index, Allocator* allocator = 0) const {
         char buffer[21];
-        char* end = sizeof(SizeType) == 4 ? internal::u32toa(index, buffer) : internal::u64toa(index, buffer);
+        char* end = sizeof(SizeType) == 4 ? (internal::u32toa(index, buffer)) : (internal::u64toa(index, buffer));
         SizeType length = static_cast<SizeType>(end - buffer);
         buffer[length] = '\0';
 
