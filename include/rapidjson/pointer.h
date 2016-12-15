@@ -564,7 +564,8 @@ public:
 
     //! Query a value in a document with default value.
     template <typename stackAllocator>
-    ValueType& GetWithDefault(GenericDocument<EncodingType, typename ValueType::AllocatorType, stackAllocator>& document, const ValueType& defaultValue) const {
+    ValueType& GetWithDefault(GenericDocument<EncodingType, typename ValueType::AllocatorType, stackAllocator>& document, const ValueType& defaultValue) const
+	{
         return GetWithDefault(document, defaultValue, document.GetAllocator());
     }
 
