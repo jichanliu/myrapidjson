@@ -665,11 +665,14 @@ public:
                     RAPIDJSON_INVALID_KEYWORD_RETURN(GetAllOfString());
         
         if (anyOf_.schemas) {
+			bool skip = false;
             for (SizeType i = anyOf_.begin; i < anyOf_.begin + anyOf_.count; i++)
-                if (context.validators[i]->IsValid())
-                    goto foundAny;
-            RAPIDJSON_INVALID_KEYWORD_RETURN(GetAnyOfString());
-            foundAny:;
+                if (context.validators[i]->IsValid()){
+					skip = true;
+					break;
+				}
+			if(!skip)
+				RAPIDJSON_INVALID_KEYWORD_RETURN(GetAnyOfString());
         }
 
         if (oneOf_.schemas) {
