@@ -89,7 +89,7 @@ inline char* u32toa(uint32_t value, char* buffer) {
         else
             *buffer++ = static_cast<char>('0' + static_cast<char>(a));
 
-        const uint32_t b = value / 10000; 
+        const uint32_t b = value / 10000; // 0 to 9999
         const uint32_t c = value % 10000; // 0 to 9999
         
         const uint32_t d1 = (b / 100) << 1;

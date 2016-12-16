@@ -44,17 +44,17 @@ inline void GrisuRound(char* buffer, int len, uint64_t delta, uint64_t rest, uin
 inline unsigned CountDecimalDigit32(uint32_t n) {
     // Simple pure C++ implementation was faster than __builtin_clz version in this situation.
     if (n < 10) return 1;
-    else if (n < 100) return 2;
-    else if (n < 1000) return 3;
-    else if (n < 10000) return 4;
-    else if (n < 100000) return 5;
-    else if (n < 1000000) return 6;
-    else if (n < 10000000) return 7;
-    else if (n < 100000000) return 8;
+    if (n < 100) return 2;
+    if (n < 1000) return 3;
+    if (n < 10000) return 4;
+    if (n < 100000) return 5;
+    if (n < 1000000) return 6;
+    if (n < 10000000) return 7;
+    if (n < 100000000) return 8;
     // Will not reach 10 digits in DigitGen()
     //if (n < 1000000000) return 9;
     //return 10;
-    else return 9;
+    return 9;
 }
 
 inline void DigitGen(const DiyFp& W, const DiyFp& Mp, uint64_t delta, char* buffer, int* len, int* K) {
@@ -78,7 +78,7 @@ inline void DigitGen(const DiyFp& W, const DiyFp& Mp, uint64_t delta, char* buff
             case  3: d = p1 /        100; p1 %=        100; break;
             case  2: d = p1 /         10; p1 %=         10; break;
             case  1: d = p1;              p1 =           0; break;
-            default: break;
+            default:;
         }
         if (d || *len)
             buffer[(*len)++] = static_cast<char>('0' + static_cast<char>(d));
