@@ -16,6 +16,12 @@
  * Use template and inline functions to reduce function call overheads.
  * Internal optimized Grisu2 and floating point parsing implementations.
  * Optional SSE2/SSE4.2 support.
+* Concise
+ * Combine many operations together
+ * Use many bit operation
+* Neat
+ * Unique composing type
+ 
 
 ## Standard compliance
 
