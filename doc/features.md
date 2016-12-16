@@ -108,3 +108,20 @@
  * Rvalue reference
  * `noexcept` specifier
  * Range-based for loop
+ 
+## Pointer
+
+* This feature was released in v1.1.0
+ * A standardized ([RFC6901]) way to select a value inside a JSON Document (DOM)
+ * Analogous to XPath for XML document
+ * A single JSON Pointer only pointed to a single value
+ * Simplify some manipulations of the DOM
+ 
+## Schema
+
+* This feature was released in v1.1.0
+ * A draft standard for describing the format of JSON data.
+ * Safely access the DOM without manually checking types
+ * Ensure that the serialized JSON conform to a specified schema.
+
+ 
